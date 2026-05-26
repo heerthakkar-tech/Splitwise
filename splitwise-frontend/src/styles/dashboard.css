@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  background-color: #f4f7f6;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.dashboard-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(26, 43, 76, 0.06);
+  width: 100%;
+  max-width: 1100px;
+  margin: 100px auto;
+  box-sizing: border-box;
+}
+
+.summary-cards {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-sections {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+.person-card {
+  display: flex;
+}
+
+.person-name {
+  width: 150px;
+  flex-shrink: 0;
+}
+
+.person-price {
+  text-align: left; /* Prices will now all start at the 150px mark */
+}
+
+.list-title {
+  display: flex;
+}
+
+.minus {
+  color: red;
+}
+
+.plus {
+  color: green;
+}
