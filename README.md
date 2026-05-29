@@ -8,7 +8,7 @@ A full-stack expense sharing application inspired by Splitwise where users can s
 
 - User Signup
 - User Login
-- JWT Authentication
+- JWT Authentication///////////////
 - Protected Routes
 - Logout functionality
 

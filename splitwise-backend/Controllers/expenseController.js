@@ -1,5 +1,6 @@
 const expenseModel = require("../Model/expenseModel");
 const transporter = require("../config/mailer");
+const redisClient = require("../config/redis");
 
 const fromEmail = process.env.USER_EMAIL;
 
@@ -43,6 +44,8 @@ const createExpense = async (req, res) => {
     const expenseId = expenseResult.insertId;
 
     await expenseModel.createSplits(expenseId, members, split_type, amount);
+
+    await Promise.all(memberId.map((id) => redisClient.del(`dashboard:${id}`)));
 
     const userData = await expenseModel.findUsersById(memberId);
 

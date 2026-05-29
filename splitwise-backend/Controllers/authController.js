@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userModel = require("../Model/authModel");
 const transporter = require("../config/mailer");
+const redisClient = require("../config/redis");
 
 const fromEmail = process.env.USER_EMAIL;
 
@@ -93,9 +94,23 @@ const login = (req, res) => {
   });
 };
 
-// Logout
-const logout = (req, res) => {
-  res.status(200).json({ message: "Logout successful" }); // i have to logout functionality from login
+// Logout route
+const logout = async (req, res) => {
+  try {
+    const token = req.token;
+
+    await redisClient.set(`blacklist:${token}`, "true", {
+      EX: 86400, // 24 hours same as jwt
+    });
+
+    return res.status(200).json({
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message,
+    });
+  }
 };
 
 module.exports = { signup, login, logout };
